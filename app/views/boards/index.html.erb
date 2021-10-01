@@ -14,21 +14,18 @@
             <th>更新日時</th>
         </tr>
     </thead>
+
     <tbody>
+        <% @boards.each do |board| %>
+
         <tr>
-            <th>1</th>
-            <td>雑談記事</td>
-            <td>Taro</td>
-            <td>2018年4月1日</td>
-            <td>2018年4月15日</td>
+            <th><%= board.title %></th>
+            <td><%= board.body %></td>
+            <td><%= board.name %></td>
+            <td><%= board.created_at.to_s(:datetime_jp) %></td>
+            <td><%= board.updated_at.to_s(:datetime_jp) %></td>
         </tr>
-        <tr>
-            <th>2</th>
-            <td>雑談掲示板2</td>
-            <td>Ken</td>
-            <td>2018年4月1日</td>
-            <td>2018年4月15日</td>
-        </tr>
-        </tr>
+        <% end %>
     </tbody>
+
 </table>
