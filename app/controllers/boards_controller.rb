@@ -1,5 +1,8 @@
 class BoardsController < ApplicationController
+
+    # index.html.erb で表示するために、Board Class からインスタンスを作成し、@boards に代入にしている
     def index
+        @boards = Board.all
     end
 
     # new.html.erb で入力を行うために、Board Class からインスタンスを作成し、@board に代入にしている
@@ -7,7 +10,7 @@ class BoardsController < ApplicationController
         @board = Board.new
     end
 
-    # 
+    # Board Class のcreate method で引数(board_params) に渡された値を保存している
     def create
         Board.create(board_params)
     end
