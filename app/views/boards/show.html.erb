@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center mt-4 mb-4">
+    <div class="ml-auto boards__linkBox">
+        <!-- 第二引数にpath を指定することでリンクを生成してくれる-->
+        <%= link_to '一覧', new_board_path, class: 'btn btn-outline-dark' %>
+        <%= link_to '編集', edit_board_path, class: 'btn btn-outline-dark' %>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4><%= @board.title %></h4>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><%= simple_format(@board.body) %></p>
+        <p class="text-right cont-weight-bold mr-10"><%= @board.name %></p>
+    </div>
+</div>

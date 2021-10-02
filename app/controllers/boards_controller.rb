@@ -15,6 +15,11 @@ class BoardsController < ApplicationController
         Board.create(board_params)
     end
 
+    # find method でリクエストされたid に対応する掲示板の値をparams[:id] で抽出し、@board に代入している
+    def show
+        @board = Board.find(params[:id])
+    end
+
     # private method を使って設定したmethod はストロングパラメーターズとして、params の中の特定の値を格納できる
     private
 
