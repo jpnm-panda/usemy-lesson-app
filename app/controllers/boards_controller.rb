@@ -20,6 +20,20 @@ class BoardsController < ApplicationController
         @board = Board.find(params[:id])
     end
 
+    # find method でリクエストされたid に対応する掲示板の値をparams[:id] で抽出し、@board に代入している
+    def edit
+        @board = Board.find(params[:id])
+    end
+
+    # 変数は、表示させるView がない(他のファイルで呼び出さない)のでboard を使用する
+    def update
+        board = Board.find(params[:id])
+        board.update(board_params)
+
+        # redirect_to の後に指定したpath の画面に遷移させる
+        redirect_to board
+    end
+
     # private method を使って設定したmethod はストロングパラメーターズとして、params の中の特定の値を格納できる
     private
 
