@@ -6,12 +6,5 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        <h4><%= @board.title %></h4>
-    </div>
-    <div class="card-body">
-        <p class="card-text"><%= simple_format(@board.body) %></p>
-        <p class="text-right cont-weight-bold mr-10"><%= @board.name %></p>
-    </div>
-</div>
+<%# _board.html.erbを呼び出して、@board をファイル名と同名のローカル変数に格納してわたしている%>
+<%= render partial: 'board', object: @board %>
