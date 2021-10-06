@@ -10,9 +10,10 @@ class BoardsController < ApplicationController
         @board = Board.new
     end
 
-    # Board Class のcreate method で引数(board_params) に渡された値を保存している
+    # Board Class のcreate method で引数(board_params) に渡された値を元にオブジェクトを作成している
     def create
-        Board.create(board_params)
+        board = Board.create(board_params) # リダイレクトに必要な/board/:id を作成するための値をboard に格納している
+        redirect_to board
     end
 
     # find method でリクエストされたid に対応する掲示板の値をparams[:id] で抽出し、@board に代入している
@@ -31,6 +32,14 @@ class BoardsController < ApplicationController
         board.update(board_params)
 
         # redirect_to の後に指定したpath の画面に遷移させる
+        redirect_to board
+    end
+
+    #  # find method でリクエストされたid に対応する掲示板の値をparams[:id] で抽出し、board に代入している
+    def destroy
+        board = Board.find(params[:id]) # リダイレクトとdelete method を使用するために必要な/board/:id を作成するための値をboard に格納している
+        board.delete
+
         redirect_to board
     end
 

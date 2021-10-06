@@ -13,6 +13,7 @@
             <th>作成日時</th>
             <th>更新日時</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -27,6 +28,7 @@
             <td><%= board.updated_at.to_s(:datetime_jp) %></td>
             <!-- board のようにオブジェクト名を指定することで対応するpath boards/:id というようなpath を作ってくれる-->
             <td><%= link_to '詳細', board, class: 'btn btn-outline-dark' %></td>
+            <td><%= link_to '削除', board, class: 'btn btn-outline-dark', method: :delete %></td>
         </tr>
         <% end %>
     </tbody>
