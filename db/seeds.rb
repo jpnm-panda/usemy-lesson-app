@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# テスト環境と判定された場合、50個のユーザーデータを作成する
+if Rails.env == 'development'
+    (1..50).each do |i|
+        Board.create(name: "ユーザー#{i}", title: "タイトル#{i}", body: "本文#{i}")
+    end
+end
