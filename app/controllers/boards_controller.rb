@@ -16,6 +16,7 @@ class BoardsController < ApplicationController
     # Board Class のcreate method で引数(board_params) に渡された値を元にオブジェクトを作成している
     def create
         board = Board.create(board_params) # リダイレクトに必要な/board/:id を作成するための値をboard に格納している
+        flash[:notice] = "「#{board.title}」の掲示板を作成しました" # flash 変数にフラッシュメッセージ用のテキストを格納する
         redirect_to board
     end
 
@@ -37,7 +38,8 @@ class BoardsController < ApplicationController
     def destroy
         @board.delete
 
-        redirect_to @board
+        # リダイレクトが行われた時、flash 変数にフラッシュメッセージ用のテキストを格納する
+        redirect_to @board, flash: { notice: "「#{@board.title}」の掲示板を削除しました" }
     end
 
     # private method を使って設定したmethod はストロングパラメーターズとして、params の中の特定の値を格納できる
