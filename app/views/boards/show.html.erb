@@ -6,5 +6,10 @@
     </div>
 </div>
 
+<!-- flash 変数に値が入っていた場合、フラッシュメッセージを表示する-->
+<% if flash[:notice] %>
+<div class="alert alert-primary"><%= flash[:notice] %></div>
+<% end %>
+
 <%# _board.html.erbを呼び出して、@board をファイル名と同名のローカル変数に格納してわたしている%>
 <%= render partial: 'board', object: @board %>
