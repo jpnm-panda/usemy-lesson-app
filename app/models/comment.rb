@@ -18,5 +18,6 @@
 #  fk_rails_...  (board_id => boards.id)
 #
 class Comment < ApplicationRecord
+  # 一つのboard model のオブジェクトと関連づけを行うための設定
   belongs_to :board
 end
