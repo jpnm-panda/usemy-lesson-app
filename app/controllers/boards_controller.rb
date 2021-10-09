@@ -15,9 +15,19 @@ class BoardsController < ApplicationController
 
     # Board Class のcreate method で引数(board_params) に渡された値を元にオブジェクトを作成している
     def create
-        board = Board.create(board_params) # リダイレクトに必要な/board/:id を作成するための値をboard に格納している
-        flash[:notice] = "「#{board.title}」の掲示板を作成しました" # flash 変数にフラッシュメッセージ用のテキストを格納する
-        redirect_to board
+        board = Board.new(board_params) # リダイレクトに必要な/board/:id を作成するための値をboard に格納している
+
+        if board.save # board オブジェクトを使い保存を行い、結果がBoolean で返される
+            flash[:notice] = "「#{board.title}」の掲示板を作成しました" # flash 変数にフラッシュメッセージ用のテキストを格納する
+            
+            redirect_to board
+        else
+            # board からどの値がバリデーションにひかかったのかを補足し、内容をerror_messages の配列に格納する
+            redirect_to new_board_path, flash: {
+                board: board,
+                error_messages: board.errors.full_messages
+            }
+        end
     end
 
     def show
