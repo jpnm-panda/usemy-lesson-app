@@ -1,5 +1,15 @@
 <%# このファイルで記述しているフォームのパーツは他のView で呼び出せる%>
 
+<%# 入力した値が、バリデーションにひかかったときにエラーメッセージを表示させる%>
+<% if flash[:error_messages] %>
+<div class="alert alert-danger">
+    <%# :error_messages の配列に格納された値のぶんだけmsg オブジェクトが作成される%>
+    <% flash[:error_messages].each do |msg|%>
+    <li><%= msg %></li>
+    <% end %>
+</div>
+<% end %>
+
 <%# form_for helper の第一引数にboard ブロック引数にf (ブロックビルダーオブジェクト)を設定する%>
 <%= form_for board do |f|%>
 
