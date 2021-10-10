@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root 'boards#index'
   # resources の後に複数形でリソース名をシンボルで指定することで、RESTfull なルーティングを作成する
   resources :boards
-  resources :comments, only: %i[create, destroy]
+  resources :comments, only: %i[create destroy]
 end
