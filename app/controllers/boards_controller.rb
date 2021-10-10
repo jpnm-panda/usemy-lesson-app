@@ -31,6 +31,7 @@ class BoardsController < ApplicationController
     end
 
     def show
+        @comment = @board.comments.new # 掲示板詳細ページを開いた段階で、board オブジェクトのid に紐づくcomment オブジェクトを作成し@comment に格納する
     end
 
     def edit

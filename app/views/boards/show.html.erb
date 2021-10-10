@@ -13,3 +13,6 @@
 
 <%# _board.html.erbを呼び出して、@board をファイル名と同名のローカル変数に格納してわたしている%>
 <%= render partial: 'board', object: @board %>
+
+<%# _comment_form.html.erbを呼び出して、@comment をローカル変数に格納してわたしている%>
+<%= render partial: 'comment_form', locals: { comment: @comment } %>
