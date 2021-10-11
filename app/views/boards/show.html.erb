@@ -14,5 +14,11 @@
 <%# _board.html.erbを呼び出して、@board をファイル名と同名のローカル変数に格納してわたしている%>
 <%= render partial: 'board', object: @board %>
 
+<div class="p-comment_list">
+    <div class="p-comment_listTitle">コメント</div>
+    <!-- @board.comments が値を取得する限りレンダリングが繰り返される-->
+    <%= render @board.comments %>
+</div>
+
 <%# _comment_form.html.erbを呼び出して、@comment をローカル変数に格納してわたしている%>
-<%= render partial: 'comment_form', locals: { comment: @comment } %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
