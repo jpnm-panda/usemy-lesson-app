@@ -6,10 +6,11 @@ class CommentsController < ApplicationController
 
         redirect_to comment.board # comment オブジェクトに対応した、board_id を取得し紐付いているboard オブジェクトへ遷移させる
       else
-        redirect_to :back, flash: {
+        redirect_back fallback_location: root_path, flash: {
           comment: comment,
           error_messages: comment.errors.full_messages
         }
+        
       end
   end
 
