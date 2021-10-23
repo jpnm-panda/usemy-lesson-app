@@ -9,7 +9,7 @@
 #
 class Tag < ApplicationRecord
     # 複数のboard_tag_relations model のオブジェクトとの紐付けを設定している
-    has_many :board_tag_relations
+    has_many :board_tag_relations, dependent: :delete_all
 
     # board_tag_relations model を介して、複数のboard model のオブジェクトとの紐付けを設定している
     has_many :boards, through: :board_tag_relations
