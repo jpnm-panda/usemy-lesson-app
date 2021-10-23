@@ -12,7 +12,13 @@
 class Board < ApplicationRecord
     
     # 複数のcomment model のオブジェクトと関連を持たせるための設定
-    has_many :comments
+    has_many :comment
+
+    # 複数のtag model のオブジェクトとの紐付けを設定している
+    has_many :board_tag_relations
+    
+    # board_tag_relations model を介して、複数のtag model のオブジェクトとの紐付けを設定している
+    has_many :tags, through: :board_tag_relations
 
     # 必ず値が入力されること、最大文字数以下であることを確認するバリデーション
     validates :name, presence: true, length: { maximum: 10 }
