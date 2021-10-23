@@ -38,12 +38,19 @@ class BoardsController < ApplicationController
         @board = Board.find(params[:id])
     end
 
-    # 変数は、表示させるView がない(他のファイルで呼び出さない)のでboard を使用する
+    # set_target_board method を使うので、変数は@board に置き換える
     def update
-        @board.update(board_params)
-
-        # redirect_to の後に指定したpath の画面に遷移させる
-        redirect_to @board
+        if @board.update(board_params)
+            flash[:notice] = "「#{@board.title}」の掲示板の内容を更新しました"
+            
+            redirect_to @board
+        else
+            # @board からどの値がバリデーションにひかかったのかを補足し、内容をerror_messages の配列に格納する
+            redirect_back fallback_location: root_path, flash: {
+                board: @board,
+                error_messages: @board.errors.full_messages
+            }
+        end
     end
 
     def destroy
