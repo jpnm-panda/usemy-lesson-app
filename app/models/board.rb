@@ -12,10 +12,10 @@
 class Board < ApplicationRecord
     
     # 複数のcomment model のオブジェクトと関連を持たせるための設定
-    has_many :comment
+    has_many :comments, dependent: :delete_all
 
     # 複数のtag model のオブジェクトとの紐付けを設定している
-    has_many :board_tag_relations
+    has_many :board_tag_relations, dependent: :delete_all
     
     # board_tag_relations model を介して、複数のtag model のオブジェクトとの紐付けを設定している
     has_many :tags, through: :board_tag_relations
