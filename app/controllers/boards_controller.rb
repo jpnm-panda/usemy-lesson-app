@@ -54,7 +54,7 @@ class BoardsController < ApplicationController
     end
 
     def destroy
-        @board.delete
+        @board.destroy # dependent option を使いたいのでdestroy method におきかえる
 
         # リダイレクトが行われた時、flash 変数にフラッシュメッセージ用のテキストを格納する
         redirect_to @board, flash: { notice: "「#{@board.title}」の掲示板を削除しました" }
