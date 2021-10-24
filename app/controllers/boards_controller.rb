@@ -3,9 +3,10 @@ class BoardsController < ApplicationController
     # メソッドの実行前に、引数にキーの形で設定したメソッドを使用する（only制約で絞り込みもできる）
     before_action :set_target_board, only: %i[show edit update destroy]
 
-    # index.html.erb で表示するために、Board Class からインスタンスを作成し、@boards に代入にしている
+    # 選択されたtag_id が存在している場合は、Board.all で紐づくBoard オブジェクトを取得し、ない場合は全件取得する
     def index
-        @boards = Board.page(params[:page]) # page method でデフォルトで設定された値だけが引数に渡る
+        @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+        @boards = @boards.page(params[:page]) # page method でデフォルトで設定された値だけが引数に渡る
     end
 
     # new.html.erb で入力を行うために、Board Class からインスタンスを作成し、@board に代入にしている
