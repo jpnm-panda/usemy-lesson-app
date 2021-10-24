@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  # boards resourcs で事足りるがheader_link_item helper のために設定しておく
+  get 'users/new'
+  get 'users/create'
+  get 'users/me'
+  get 'home/index'
+  get 'sessions/create'
+  get 'sessions/destroy'
+
+  # boards resourcs で事足りるがheader_link_item helper のため（ルートページが必要）に設定しておく
   root 'home#index'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'boards#index'
   # resources の後に複数形でリソース名をシンボルで指定することで、RESTfull なルーティングを作成する
   resources :boards
   resources :comments, only: %i[create destroy]
